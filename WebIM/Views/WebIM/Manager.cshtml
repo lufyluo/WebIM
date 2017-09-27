@@ -1,0 +1,104 @@
+﻿@Styles.Render("~/css/WebIM/Manager")
+@Styles.Render("~/css/webimui");
+@Scripts.Render("~/js/WebIM/Manager")
+<div id="Manager-MoveFrom" class="MoveFrom">
+    <div id="Manager-wrap" userid="@PageData["userid"]">
+        <!--顶部-->
+        <div id="Manager-header">
+            <div id="Manager-userbox" class="pull-left">
+                <img class="img-circle pull-left" id="Manager-user-img" src="~/Img/WebIM/Manager_UserImg_Default.jpg" />
+                <div id="Manager-user-name" class="pull-left">@PageData["username"]</div>
+                <div id="Manager-user-bm" class="">(部门职务)</div>
+            </div>
+            <span class="font close smallest">C</span>
+            <div id="Manager-signbox">
+                <div id="Manager-sign"></div>
+            </div>
+            <!--切换选项-->
+            <ul class="Manager-tab">
+                <li class="font activity">E</li>
+                <li style="display:none;" class="font">N</li>
+            </ul>
+        </div>
+        <div id="Manager-main">           
+            <div class="Manager-tabbox">
+                <ul>
+                    <!--联系人-->
+                    <li id="Manager-contactbox" class="noselect"></li>
+                    <li id="Manager-groupbox" class="noselect"></li>
+                </ul>
+            </div>
+        </div>
+        <!--工具-->
+        <div id="Manager-toolbox">
+            <div class="Manager-icon-box" id="Manager-msg-box">
+                <span class="glyphicon glyphicon-bell"></span>
+                <div class="Manager-msg-number img-circle" style="display:none;">1</div>
+                <div class="Manager-msg-prompt-box" style="display:none;">
+                </div>
+                <!--<span id="creategroup" class="glyphicon glyphicon-plus"></span>-->
+            </div>
+
+        </div>
+    </div>
+    <div id="Manager-wrap-min" style="display:none;">
+        <img class="img-circle pull-left" id="Manager-user-img-min" src="~/Img/WebIM/Manager_UserImg_Default.jpg" />
+        <div id="Manager-prompt-box-min">
+            <div id="Manager-prompt-box-titile-min">没有新的消息</div>
+            <ul id="Manager-prompt-box-details-min" style="display:none;">
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="Manager-friends-selectbox" style="display:none;">
+    <div class="Manager-friends-selectbox-title"></div>
+    <div class="Manager-friends-selectbox-friendbox"></div>
+    <div class="Manager-friends-selectbox-selected">
+        <ul></ul>
+    </div>
+    <button class="Manager-friends-selectbox-sure pull-right btn btn-info">确定</button>
+    <button class="Manager-friends-selectbox-close pull-right btn btn-info">关闭</button>
+</div>
+<div id="Manager-creategroupbox" style="display:none;">
+    <div class="title">创建群</div>
+    <table width="290" border="0">
+        <tr>
+            <td width="83" height="28">群名称</td>
+            <td width="197"><input id="groupname" /></td>
+        </tr>
+        <tr>
+            <td height="28">群简介</td>
+            <td><input id="groupjj" /></td>
+        </tr>
+        <tr>
+            <td height="28">入群成员</td>
+            <td><input id="groupmember" class="pull-left" /><button class="Manager-creatgroup-selectmember pull-left btn btn-info">...</button></td>
+        </tr>
+        <tr>
+            <td height="28">是否公开</td>
+            <td>
+                <div align="center">
+                    <input id="grouppub" type="checkbox" />
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td height="28">需要申请</td>
+            <td>
+                <div align="center">
+                    <input id="groupapply" type="checkbox" />
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td height="28">允许邀请</td>
+            <td>
+                <div align="center">
+                    <input id="groupallow" type="checkbox" />
+                </div>
+            </td>
+        </tr>
+    </table>
+    <button id="Manager-creategroup-sure" class=" pull-right btn btn-info">确定</button>
+    <button id="Manager-creategroup-close" class=" pull-right btn btn-info">关闭</button>
+</div>

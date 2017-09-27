@@ -1,0 +1,12 @@
+﻿@{
+    string Controller = Request.RequestContext.RouteData.Values["Controller"].ToString();
+    string layoutpath = string.Format("~/Views/Shared/_Layout{0}.cshtml", Controller);
+    if (File.Exists(Server.MapPath(layoutpath)))
+    {
+        Layout = layoutpath;
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+}

@@ -1,0 +1,7 @@
+﻿body {
+    width:100%;
+}
+.MoveFrom{
+    position:absolute;
+    box-shadow: 1px 1px 50px rgba(0,0,0,.3);
+}

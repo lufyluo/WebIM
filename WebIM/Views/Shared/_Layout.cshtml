@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @{
+        string Controllername = Request.RequestContext.RouteData.Values["Controller"].ToString();
+        string Actionname = Request.RequestContext.RouteData.Values["Action"].ToString();
+        string csspath = string.Format("~/css/{0}/{1}", Controllername, Actionname);
+        string jspath = string.Format("~/js/{0}/{1}", Controllername, Actionname);
+    }
+    @Styles.Render(csspath)
+    @Styles.Render("~/css/bootstrap")
+    @Scripts.Render("~/js/jquery")
+    @Scripts.Render("~/js/bootstrap")
+    @Scripts.Render(jspath)
+    @RenderSection("scripts", required: false)
+
+</head>
+<body>
+    @RenderBody()
+    @{ try {
+            RenderPage("~/Views/Shared/_PartialFooter.cshtml");
+         }
+        catch
+        {
+
+        }
+        }
+</body>
+</html>

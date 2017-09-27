@@ -1,0 +1,386 @@
+﻿* {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+#Manager-MoveFrom {
+    z-index: 999;
+    top: 50px;
+    left: 20px;
+    box-shadow: 1px 1px 30px rgba(0,0,0,.3);
+    border-radius: 2px;
+}
+
+#Manager-wrap-min {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+#Manager-wrap {
+    width: 310px;
+    /*height: 514px;*/
+    display: block;
+    border: 1px solid #bdbdbd;
+    overflow: hidden;
+    background-color: white;
+    /*background: url("/Img/WebIM/bg.jpg");*/
+}
+
+#Manager-header {
+    background-color: #f2f2f2;
+    cursor: move;
+    padding:10px 10px 0;
+}
+
+#Manager-userbox {
+    height: 60px;
+    width: 270px;
+    line-height: 40px;
+    position:relative;
+}
+#Manager-user-bm{
+    position: absolute;
+    left: 60px;
+    bottom: 0px;
+    color: gray;
+}
+#Manager-user-name {
+    margin-left: 15px;
+    font-size: large;
+    color: #1e1e1e;
+}
+
+#Manager-user-img {
+    width: 50px;
+    height: 50px;
+}
+
+#Manager-signbox {
+    clear: both;
+}
+
+#Manager-main {
+    height: 400px;
+    width: 100%;
+    /*padding: 5px 5px 5px 5px;*/
+    padding-left: 0px;
+    padding-right: 0px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: rgba(255,255,255,0.5);
+}
+
+.Manager-group {
+    margin-left: 10px;
+    margin-bottom: 5px;
+    width: 100%;
+    float: left;
+}
+
+    .Manager-group .hide {
+        display: none;
+    }
+
+.Manager-caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 5px;
+    margin-top: 0px;
+    vertical-align: middle;
+    border-left: 5px dashed;
+    border-left: 5px solid \9;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+}
+
+    .Manager-caret.activity {
+        display: inline-block;
+        width: 0;
+        height: 0;
+        margin-top: 5px;
+        margin-left: 0px;
+        vertical-align: middle;
+        border-top: 5px dashed;
+        border-top: 5px solid \9;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+    }
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+    -khtml-user-select: none; /* Konqueror */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+not supported by any browser */
+}
+
+.glyphicon {
+    margin-right: 5px;
+    color: #C9BDBB;
+}
+
+.Manager-contact {
+    height:50px;
+    width:100%;
+   /* border-bottom: 1px solid #bdbdbd;*/
+   cursor: pointer;
+}
+
+
+    .Manager-contact:hover {
+        /*background-color:#dff0f7;*/
+        background-color:#dff0f7;
+    }
+
+#Manager-sign, .Manager-sign {
+    font-size: 8px;
+    color: #808080;
+    height: 12px;
+}
+
+#Manager-toolbox {
+    background-color: #F6F6F6;
+    height: 40px;
+}
+
+    #Manager-toolbox .Manager-icon-box {
+        width: 100%;
+        height: 40px;
+        text-align: center;
+        position: relative;
+    }
+
+        #Manager-toolbox .Manager-icon-box span {
+            width: 33%;
+            height: 40px;
+            font-size: 20px;
+            line-height: 40px;
+            color: rgba(0,0,0,.6);
+            float:left;
+        }
+
+            #Manager-toolbox .Manager-icon-box span:hover {
+                color:#dff0f7;
+            }
+
+.Manager-msg-number {
+    position: absolute;
+    left:20%;
+    top: 5px;
+    font-family: 'Yu Gothic UI';
+    line-height: 12px;
+    width: 12px;
+    height: 12px;
+    color: white;
+    background-color: red;
+}
+
+.Manager-msg-prompt-box {
+    width: 150px;
+    height: auto;
+    position: absolute;
+    left: 0px;
+    bottom: 40px;
+    font-size: 10px;
+    background-color: white;
+}
+
+
+    .Manager-msg-prompt-box .Manager-contact {
+        height: 43px;
+    }
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    background-color: white;
+}
+
+::-webkit-scrollbar-thumb {
+    width: 5px;
+    background-color:#dff0f7;
+    border-radius: 3px 3px;
+}
+
+.Manager-tab {
+    display: none;
+    overflow:hidden;
+    width: 100%;
+    /*height: 24px;*/
+    list-style: none;
+    background:#f2f2f2;
+}
+
+    .Manager-tab li {
+        cursor:pointer;
+        float: left;
+        list-style: none;
+        list-style-type: none;
+        width: 50%;
+        height: 40px;
+        font-size: 30px;
+        line-height: 40px;
+        text-align: center;
+        color: #585858;
+        cursor: pointer;
+    }
+
+        .Manager-tab li:hover {
+            color:#dff0f7;
+        }
+
+    .Manager-tab .activity {
+        border-bottom: 3px solid #dff0f7;
+    }
+    .glyphicon-menu-down:before{
+        color:#C9BDBB;
+    }
+   .glyphicon-menu-right:before{
+       color:#C9BDBB;
+   }
+.Manager-tabbox {
+    width: 100%;
+    overflow: hidden;
+}
+
+    .Manager-tabbox ul {
+        width: 600px;
+        padding: 10px 0;
+        overflow: hidden;
+    }
+
+        .Manager-tabbox ul li {
+            width: 300px;
+            float: left;
+        }
+
+
+
+#Manager-user-img-min{
+    width:40px;
+    height:40px;
+    position:absolute;
+    z-index:999;
+}
+
+#Manager-prompt-box-min{
+    background-color:white;
+    padding-left:25px;
+    height:36px;
+    width:140px;
+    line-height:36px;
+    left:20px;
+    margin-top:1px;
+    border:1px solid #e9e9e9;
+    top:1px;
+    position:absolute;
+}
+
+#Manager-prompt-box-details-min{
+    position:absolute;
+    width:150px;
+    border:1px solid #e2e2e2;
+    left:-10px;
+    padding:0px;
+    margin:0px;
+    bottom:34px;
+}
+
+#Manager-prompt-box-details-min li{
+    list-style:none;
+    height:43px;
+}
+
+#Manager-friends-selectbox {
+    position: absolute;
+    left: 500px;
+    right: auto;
+    background-color: white;
+    border-radius: 5px 5px 0px 0px;
+    width: 500px;
+    height: 500px;
+    z-index: 999;
+    border: 1px solid #bdbdbd;
+}
+
+.Manager-friends-selectbox-title {
+    width: 500px;
+    background-color:#dff0f7;
+    height: 30px;
+    margin:-1px;
+    border-radius:5px 5px 0px 0px;
+    border:1px solid#dff0f7;
+}
+
+.Manager-friends-selectbox-friendbox {
+    float: left;
+    height: 430px;
+    width: 200px;
+    border-bottom: 1px solid #bdbdbd;
+    overflow-x:hidden;
+    overflow-y:auto;
+
+}
+
+.Manager-friends-selectbox-selected{
+    float:left;
+    border-left:1px solid #bdbdbd;
+    border-bottom:1px solid #bdbdbd;
+    width:298px;
+    height:430px;
+    border-bottom-color:white;
+}
+.Manager-friends-selectbox-selected ul li{
+    float:left;
+    width:70px;
+    height:55px;
+    overflow:hidden;
+    text-align:center;
+}
+    .Manager-friends-selectbox-sure {
+        padding: 3px 12px 3px 12px;
+        margin-top: 7px;
+        margin-right: 7px;
+    }
+.Manager-friends-selectbox-close {
+    padding: 3px 12px 3px 12px;
+    margin-top: 7px;
+    margin-right: 7px;
+}
+
+#Manager-creategroupbox{
+    position:absolute;
+    z-index:999;
+    width:500px;
+    height:250px;
+    background-color:white;
+    border-radius:3px 3px 0px 0px;
+    border:1px solid #bdbdbd;
+}
+
+.title {
+    width:500px;
+    height:30px;
+    background-color:#2fbff6;
+    border-radius: 3px 3px 0px 0px;
+    color:white;
+    font-size:24px;
+    line-height:30px;
+    text-align:center;
+    margin:-1px;
+}
+
+#Manager-creategroupbox table{
+    margin:10px auto 0 auto;
+}
+
+.Manager-creatgroup-selectmember{
+    height:24px;
+    margin:0px;
+    border-radius:0px 3px 3px 0px;
+}

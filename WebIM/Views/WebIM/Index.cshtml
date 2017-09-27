@@ -1,0 +1,9 @@
+﻿@{
+    ViewBag.Title = "聊天";
+    var model = Model;
+}
+@Scripts.Render("~/js/websdk")
+@Scripts.Render("~/js/webapi")
+@Scripts.Render("~/js/amr")
+@RenderPage("Manager.cshtml",new {userid=model.userid,username=model.username})
+@RenderPage("Chat.cshtml")
