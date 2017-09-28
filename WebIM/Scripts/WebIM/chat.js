@@ -153,6 +153,10 @@
                         ChatGroupMemberBox.append(ov);
                     }
                 }
+            } else {
+                ChatNowObj = ChatListItemData.get(e.data.id);
+                ChatNowId = obj.id;
+                _this.Config.ChatChangeObj(ChatNowObj); 
             }
             e.stopPropagation();
         });
