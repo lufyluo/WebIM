@@ -179,7 +179,20 @@ not supported by any browser */
     color: white;
     background-color: red;
 }
-
+.Manager-msg-position {
+    position: absolute;
+    font-family: 'Yu Gothic UI';
+    line-height: 12px;
+    color: white;
+    background-color: red;
+    margin-left: -11px;
+    margin-top: 0px;
+    width: 15px;
+    height: 15px;
+    font-size: 14px;
+    text-align: center;
+    display: none;
+}
 .Manager-msg-prompt-box {
     width: 150px;
     height: auto;

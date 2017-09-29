@@ -28,6 +28,7 @@
     var MessagePromptCountSystems = new Map();
     var MessagePromptBoxView = new Map();//记录消息提示容器的所有对象
     var MessagePromptBoxMinView = new Map();
+    this.IsTreeExpand = true;//默认展开联系人
     this.Config = {
         FriendsSelectedView: function (data) { },//选择后的视图
         FriendsView: function (data) { },//好友样式
@@ -164,6 +165,7 @@
 
             }
         }
+        this.TreeExpand();
     }
     this.GroupsData = function (data) {
         GroupsInfo = new Map();//清楚好友消息
@@ -296,4 +298,11 @@
         FriendsSelectTitleBox.val(title);
         FriendsSelectBox.show();
     }
+     this.TreeExpand = function() {
+         if (this.IsTreeExpand) {
+             $("#Manager-main .glyphicon").removeClass("glyphicon-menu-right");
+             $("#Manager-main .glyphicon").addClass("glyphicon-menu-down");
+             $(".FriendsBoxChild").show()
+         }
+     }
 }

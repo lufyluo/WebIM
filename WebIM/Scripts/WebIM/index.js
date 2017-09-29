@@ -6,7 +6,7 @@ var webapi;
 var maxlogin = 3;
 var nowlogin = 0;
 var Me = {};
-var enterprise="";
+var enterprise = "";
 
 $(document).ready(function () {
     tab_click();
@@ -39,7 +39,7 @@ $(document).ready(function () {
                     ' <div class="Manager-sign" style="margin-left:50px;margin-top:2px;">{2}</div> ' +
                     '</div >';
                 view = view.replace("{0}", data.PicName == null ? defaultImage : basepicurl + data.PicName);
-                view = view.replace("{1}", data.userid+"("+data.username+")");
+                view = view.replace("{1}", data.userid + "(" + data.username + ")");
                 view = view.replace("{2}", data.job);
                 return { view: view, isFriend: true, parent: data.parent, id: data.Hxid };
             }
@@ -67,11 +67,11 @@ $(document).ready(function () {
             '<br />' +
             '<span>{1}</span>' +
             '</li>';
-        view=view.replace("{0}", data.PicName == null ? defaultImage : basepicurl + data.PicName);
-        view=view.replace("{1}", data.username);
+        view = view.replace("{0}", data.PicName == null ? defaultImage : basepicurl + data.PicName);
+        view = view.replace("{1}", data.username);
         return { view: view };
     }
-    M.Config.Friends_Selected = function (id,data) {
+    M.Config.Friends_Selected = function (id, data) {
         if (id == "CreateGroup") {
             var s = "";
             data.forEach(function (v, k, m) {
@@ -221,47 +221,50 @@ $(document).ready(function () {
     C.SetCloseAllBtn("#CloseAll");
     C.Config = {
         ChatListItemView: function (data) {
-                var view = '<div class="pull-left Chat-user-card">' +
-                    ' <img class="img-circle pull-left" src= "{0}" width= "40" height= "40" />' +
-                    '     <div class="Chat-user-card-name pull-left">' +
-                    '         <span>{1}</span>' +
-                    '     </div>' +
-                    '     <span class="close" style="margin-top:10px;" aria-hidden="true">&times;</span>' +
-                    ' </div >';
-                if (data.isGroup) {
-                    view = view.replace("{0}", data.PicName == null ? defaultImage : basepicurl + data.PicName);
-                    view = view.replace("{1}", data.userid+"("+data.groupname+")");
-                    return { view: view, id: data.groupid, closebtn: ".close" }
-
-                }
+            var view = '<div class="pull-left Chat-user-card">' +
+                ' <img class="img-circle pull-left" src= "{0}" width= "40" height= "40" />' +
+                '     <span class="img-circle Manager-msg-position"></span>' +
+                '     <div class="Chat-user-card-name pull-left">' +
+                '         <span>{1}</span>' +
+                '     </div>' +
+                '     <span class="close" style="margin-top:10px;" aria-hidden="true">&times;</span>' +
+                ' </div >';
+            if (data.isGroup) {
                 view = view.replace("{0}", data.PicName == null ? defaultImage : basepicurl + data.PicName);
-                view = view.replace("{1}", data.userid+"("+data.username+")");
-                return { view: view, id: data.Hxid, closebtn: ".close" }
-            },//聊天列表item
-        ChatListItem_Click: function (view, beforeview) {
-                view.addClass("activity");
-                if (beforeview != null) {
-                    beforeview.removeClass("activity");
-                }
-            } ,//聊天列表item点击
-        ChatMessageSend_Click: function (data) {
-             
-                if (data.isGroup) {
-                    webapi.sendGroupText(encode($("#Chat-sendmessage-msg")), data.groupid, function () {
-                        C.AddContent({ time: getNowFormatDate(), text: $("#Chat-sendmessage-msg").html(), isMe: true }, data.groupid);
-                        $("#Chat-sendmessage-msg").html("");
-                    });
-                }
-                else {
-                    webapi.sendPrivateText(encode($("#Chat-sendmessage-msg")),data.Hxid, function () {
-                        C.AddContent({ time: getNowFormatDate(), text: $("#Chat-sendmessage-msg").html(), isMe: true }, data.Hxid);
-                        $("#Chat-sendmessage-msg").html("");
-                    });
+                view = view.replace("{1}", data.userid + "(" + data.groupname + ")");
+                return { view: view, id: data.groupid, closebtn: ".close" }
+
             }
-                
-            } ,//发送按钮点击
+            view = view.replace("{0}", data.PicName == null ? defaultImage : basepicurl + data.PicName);
+            view = view.replace("{1}", data.userid + "(" + data.username + ")");
+            return { view: view, id: data.Hxid, closebtn: ".close" }
+        },//聊天列表item
+        ChatListItem_Click: function (view, beforeview) {
+            view.addClass("activity");
+            view.find(".Manager-msg-position").html("");
+            view.find(".Manager-msg-position").hide();
+            if (beforeview != null) {
+                beforeview.removeClass("activity");
+            }
+        },//聊天列表item点击
+        ChatMessageSend_Click: function (data) {
+
+            if (data.isGroup) {
+                webapi.sendGroupText(encode($("#Chat-sendmessage-msg")), data.groupid, function () {
+                    C.AddContent({ time: getNowFormatDate(), text: $("#Chat-sendmessage-msg").html(), isMe: true }, data.groupid);
+                    $("#Chat-sendmessage-msg").html("");
+                });
+            }
+            else {
+                webapi.sendPrivateText(encode($("#Chat-sendmessage-msg")), data.Hxid, function () {
+                    C.AddContent({ time: getNowFormatDate(), text: $("#Chat-sendmessage-msg").html(), isMe: true }, data.Hxid);
+                    $("#Chat-sendmessage-msg").html("");
+                });
+            }
+
+        },//发送按钮点击
         ChatFaceItem_Selected: function (data) {
-           
+
         },//表情选择
         ChatImg_Selected: function (data, input) {
             if (data.isGroup) {
@@ -295,129 +298,129 @@ $(document).ready(function () {
             }
             else {
                 webapi.sendPrivateFile(input, data.Hxid, function (data) {
-                    C.AddContent({ time: getNowFormatDate(), text:"文件发送成功", isMe: true }, data.body.to);
+                    C.AddContent({ time: getNowFormatDate(), text: "文件发送成功", isMe: true }, data.body.to);
                 });
             }
         },//文件选择
         ChatImg_Pasted: function (data) { },//图片粘贴
         ChatChangeObj: function (data) {
+            if (data.isGroup) {
+                $("#Chat-header img").attr("src", data.PicName == null ? defaultImage : basepicurl + data.PicName);
+                $("#Chat-header .Chat-user-card-name span").html(data.groupname);
+            }
+            else {
+                $("#Chat-header img").attr("src", data.PicName == null ? defaultImage : basepicurl + data.PicName);
+                $("#Chat-header .Chat-user-card-name span").html(data.userid + "(" + data.username + ")");
+            }
+            $("#Chat-messagebox").html("");
+            try {
+                for (var i = 0; i < data.msg.length; i++)
+                    C.ShowContent(data.msg[i], data.Hxid);
+            }
+            catch (ex) { }
+            webapi.openPasteSend(data.Hxid, function (data) {
                 if (data.isGroup) {
-                    $("#Chat-header img").attr("src", data.PicName == null ? defaultImage : basepicurl + data.PicName);
-                    $("#Chat-header .Chat-user-card-name span").html(data.groupname);
+                    C.AddContent({ time: getNowFormatDate(), text: "<img style='max-width:200px'  src='" + data.value.url + "' />", isMe: true }, data.groupid);
                 }
                 else {
-                    $("#Chat-header img").attr("src", data.PicName == null ? defaultImage : basepicurl + data.PicName);
-                    $("#Chat-header .Chat-user-card-name span").html(data.userid+"("+data.username+")");
+                    C.AddContent({ time: getNowFormatDate(), text: "<img style='max-width:200px'  src='" + data.value.url + "' />", isMe: true }, data.body.to);
                 }
-                $("#Chat-messagebox").html("");
-                try {
-                    for (var i = 0; i < data.msg.length; i++)
-                        C.ShowContent(data.msg[i], data.Hxid);
-                }
-                catch (ex) { }
-                webapi.openPasteSend(data.Hxid, function (data) {
-                    if (data.isGroup) {
-                        C.AddContent({ time: getNowFormatDate(), text: "<img style='max-width:200px'  src='" + data.value.url + "' />", isMe: true }, data.groupid);
-                    }
-                    else {
-                            C.AddContent({ time: getNowFormatDate(), text: "<img style='max-width:200px'  src='" + data.value.url + "' />", isMe: true }, data.body.to);
-                    }
-                });
-            } ,//切换聊天对象
+            });
+        },//切换聊天对象
         ChatGroupMemberView: function (data) {
-                var view = '<li>' +
-                    ' <img class="img-circle" width= "35" src= "{0}" />' +
-                    '<br />' +
-                    '<span class="usernamespan">{1}</span><span class="bannedspan">禁言</span><span class="shieldingspan">拉黑</span>' +
-                    '</li>';
-                if (typeof (data.owner) != "undefined") {
-                    //群主
-                    if (data.owner == Me.userid) {
-                        //本人是群主
-                        view = view.replace("{0}", Me.PicName == null ? defaultImage : basepicurl + Me.PicName);
-                        view = view.replace("{1}", Me.userid);
-                       
-                    }
-                    else {
-                        var info = M.GetFriendsInfo().get(data.owner);
-                        view = view.replace("{0}", info.PicName == null ? defaultImage : basepicurl + info.PicName);
-                        view = view.replace("{1}", info.userid);
-                    }
-                }
-                else {
-                    //组员
-                    if (data.member == Me.userid) {
-                        //本人
-                        view = view.replace("{0}", Me.PicName == null ? defaultImage : basepicurl + Me.PicName);
-                        view = view.replace("{1}", Me.userid);
-                    }
-                    else {
-                        var info = M.GetFriendsInfo().get(data.member);
-                        view = view.replace("{0}", info.PicName == null ? defaultImage : basepicurl + info.PicName);
-                        view = view.replace("{1}", info.userid);
-                    }
-                }
-                return { view: view, talk: ".bannedspan", black: ".shieldingspan" };
-            },//群成员视图
-        ChatContentView: function (msg, data) {
-                if (msg.isMe) {
-                    var view = '<div class="Chat-mebox">' +
-                        '<img class="img-circle pull-right" width= "35" height= "35" src= "{0}" />' +
-                        '   <div class="pull-right">' +
-                        '       <span class="Chat-messagebox-username pull-right">{1}</span>' +
-                        '       <span class="Chat-messagebox-time pull-right">{2}</span>' +
-                        '       <pre class="Chat-messagebox-msg">{3}</pre>' +
-                        '   </div>' +
-                        '   </div>';
+            var view = '<li>' +
+                ' <img class="img-circle" width= "35" src= "{0}" />' +
+                '<br />' +
+                '<span class="usernamespan">{1}</span><span class="bannedspan">禁言</span><span class="shieldingspan">拉黑</span>' +
+                '</li>';
+            if (typeof (data.owner) != "undefined") {
+                //群主
+                if (data.owner == Me.userid) {
+                    //本人是群主
                     view = view.replace("{0}", Me.PicName == null ? defaultImage : basepicurl + Me.PicName);
-                    view = view.replace("{1}", Me.userid + "(" + Me.username+")");
-                    view = view.replace("{2}", msg.time);
-                    view = view.replace("{3}", msg.text);
-                    return { view: view };
-                }
-                else if (msg.isGroup) {
-                    var view = '<div class="Chat-otherbox">' +
-                        '<img class="img-circle pull-left" width= "35" height= "35" src= "{0}" />' +
-                        '    <div class="pull-left">' +
-                        '        <span class="Chat-messagebox-username pull-left">{1}</span>' +
-                        '        <span class="Chat-messagebox-time pull-left">{2}</span>' +
-                        '        <pre class="Chat-messagebox-msg">{3}</pre>' +
-                        '    </div>' +
-                        '    </div >';
-                    view = view.replace("{0}", msg.from.PicName == null ? defaultImage : basepicurl + msg.from.PicName);
-                    view = view.replace("{1}", msg.from.userid+"("+msg.from.username+")");
-                    view = view.replace("{2}", msg.time);
-                    view = view.replace("{3}", msg.text);
-                    return { view: view };
+                    view = view.replace("{1}", Me.userid);
+
                 }
                 else {
-                    var view = '<div class="Chat-otherbox">' +
-                        '<img class="img-circle pull-left" width= "35" height= "35" src= "{0}" />' +
-                        '    <div class="pull-left">' +
-                        '        <span class="Chat-messagebox-username pull-left">{1}</span>' +
-                        '        <span class="Chat-messagebox-time pull-left">{2}</span>' +
-                        '        <pre class="Chat-messagebox-msg">{3}</pre>' +
-                        '    </div>' +
-                        '    </div >';
-                    view = view.replace("{0}", data.PicName == null ? defaultImage : basepicurl + data.PicName);
-                    view = view.replace("{1}", data.userid+"("+data.username+")");
-                    view = view.replace("{2}", msg.time);
-                    view = view.replace("{3}", msg.text);
-                    return { view: view };
+                    var info = M.GetFriendsInfo().get(data.owner);
+                    view = view.replace("{0}", info.PicName == null ? defaultImage : basepicurl + info.PicName);
+                    view = view.replace("{1}", info.userid);
                 }
-            } ,//获取聊天内容视图
+            }
+            else {
+                //组员
+                if (data.member == Me.userid) {
+                    //本人
+                    view = view.replace("{0}", Me.PicName == null ? defaultImage : basepicurl + Me.PicName);
+                    view = view.replace("{1}", Me.userid);
+                }
+                else {
+                    var info = M.GetFriendsInfo().get(data.member);
+                    view = view.replace("{0}", info.PicName == null ? defaultImage : basepicurl + info.PicName);
+                    view = view.replace("{1}", info.userid);
+                }
+            }
+            return { view: view, talk: ".bannedspan", black: ".shieldingspan" };
+        },//群成员视图
+        ChatContentView: function (msg, data) {
+            if (msg.isMe) {
+                var view = '<div class="Chat-mebox">' +
+                    '<img class="img-circle pull-right" width= "35" height= "35" src= "{0}" />' +
+                    '   <div class="pull-right">' +
+                    '       <span class="Chat-messagebox-username pull-right">{1}</span>' +
+                    '       <span class="Chat-messagebox-time pull-right">{2}</span>' +
+                    '       <pre class="Chat-messagebox-msg">{3}</pre>' +
+                    '   </div>' +
+                    '   </div>';
+                view = view.replace("{0}", Me.PicName == null ? defaultImage : basepicurl + Me.PicName);
+                view = view.replace("{1}", Me.userid + "(" + Me.username + ")");
+                view = view.replace("{2}", msg.time);
+                view = view.replace("{3}", msg.text);
+                return { view: view };
+            }
+            else if (msg.isGroup) {
+                var view = '<div class="Chat-otherbox">' +
+                    '<img class="img-circle pull-left" width= "35" height= "35" src= "{0}" />' +
+                    '    <div class="pull-left">' +
+                    '        <span class="Chat-messagebox-username pull-left">{1}</span>' +
+                    '        <span class="Chat-messagebox-time pull-left">{2}</span>' +
+                    '        <pre class="Chat-messagebox-msg">{3}</pre>' +
+                    '    </div>' +
+                    '    </div >';
+                view = view.replace("{0}", msg.from.PicName == null ? defaultImage : basepicurl + msg.from.PicName);
+                view = view.replace("{1}", msg.from.userid + "(" + msg.from.username + ")");
+                view = view.replace("{2}", msg.time);
+                view = view.replace("{3}", msg.text);
+                return { view: view };
+            }
+            else {
+                var view = '<div class="Chat-otherbox">' +
+                    '<img class="img-circle pull-left" width= "35" height= "35" src= "{0}" />' +
+                    '    <div class="pull-left">' +
+                    '        <span class="Chat-messagebox-username pull-left">{1}</span>' +
+                    '        <span class="Chat-messagebox-time pull-left">{2}</span>' +
+                    '        <pre class="Chat-messagebox-msg">{3}</pre>' +
+                    '    </div>' +
+                    '    </div >';
+                view = view.replace("{0}", data.PicName == null ? defaultImage : basepicurl + data.PicName);
+                view = view.replace("{1}", data.userid + "(" + data.username + ")");
+                view = view.replace("{2}", msg.time);
+                view = view.replace("{3}", msg.text);
+                return { view: view };
+            }
+        },//获取聊天内容视图
         ChatContentSave: function (msg, data) {
-                try {
-                    data["msg"].push(msg);
-                }
-                catch (ex) {
-                    data["msg"] = new Array();
-                    data["msg"].push(msg);
-                };
-            } ,//聊天数据保存
+            try {
+                data["msg"].push(msg);
+            }
+            catch (ex) {
+                data["msg"] = new Array();
+                data["msg"].push(msg);
+            };
+        },//聊天数据保存
         ChatGroupMember: function (data) {
-                return data.members;
-            },//api获取成员并保存
+            return data.members;
+        },//api获取成员并保存
         ChatGroupTalk_Click: function (view, id, groupid) {
             var userid = "";
             if (typeof (id.owner) != "undefined")
@@ -433,8 +436,7 @@ $(document).ready(function () {
 
                     });
             }
-            else
-            {
+            else {
                 webapi.Talk(userid, groupid,
                     function (rest) {
                         view.html("禁言");
@@ -444,7 +446,7 @@ $(document).ready(function () {
                     });
             }
         },//禁言点击
-        ChatGroupBlack_Click: function (view, id,groupid) {
+        ChatGroupBlack_Click: function (view, id, groupid) {
             var userid = "";
             if (typeof (id.owner) != "undefined") {
                 userid = id.owner;
@@ -472,13 +474,21 @@ $(document).ready(function () {
                     });
             }
         },//黑名单点击
+        ChatListItemPrompt: function (view) {
+            view.find(".Manager-msg-position").show();
+            var number = parseInt(view.find(".Manager-msg-position").html()) + 1 || 1;
+            if (number > 9) {
+                number = "..";
+            }
+            view.find(".Manager-msg-position").html(number.toString());
+        }
     }
-      
+
     $.post("/api/user/GetAllUser",
         {},
         function (data) {
             M.FriendsData(data);
-            webapi = new webim_api(enterprise + Me.userid, enterprise+Me.userid, listen);
+            webapi = new webim_api(enterprise + Me.userid, enterprise + Me.userid, listen);
             webapi.login();
         },
         "json");//这里返回的类型有：json,html,xml,text
@@ -494,7 +504,7 @@ $(document).ready(function () {
         c.find("img").attr("key", c.attr("key"));
         $("#Chat-sendmessage-msg").focus();
         insertimg(c.html());
-        
+
     });
     console.log(window.WebIM);
 });
@@ -521,7 +531,7 @@ var listen = {
     onOpened: function (message) {          //连接成功回调
         nowlogin = 0;
         webapi.getList(function (data) {
-            getmember(data.data, 0);          
+            getmember(data.data, 0);
         }, function (ex) {
             console.log(ex);
         });
@@ -568,7 +578,7 @@ var listen = {
         if (message.type == "groupchat") {
             var from = M.GetFriendsInfo().get(message.from);
             //群消息
-            if (!C.HasUser(message.to)) 
+            if (!C.HasUser(message.to))
                 M.Prompt({ time: getNowFormatDate(), text: WebIM.utils.parseEmoji(message.data), isGroup: true, id: message.to, from: from });
             else
                 C.AddContent({ time: getNowFormatDate(), text: WebIM.utils.parseEmoji(message.data), isGroup: true, from: from }, message.to);
@@ -576,7 +586,7 @@ var listen = {
         else {
             //收到文本消息
             if (!C.HasUser(message.from))
-                M.Prompt({ time: getNowFormatDate(), text: WebIM.utils.parseEmoji(message.data), isFriend: true, id: message.from});
+                M.Prompt({ time: getNowFormatDate(), text: WebIM.utils.parseEmoji(message.data), isFriend: true, id: message.from });
             else
                 C.AddContent({ time: getNowFormatDate(), text: WebIM.utils.parseEmoji(message.data), isFriend: true }, message.from);
         }
@@ -596,7 +606,7 @@ var listen = {
             var from = M.GetFriendsInfo().get(message.from);
             //群消息
             if (!C.HasUser(message.to))
-                M.Prompt({ time: getNowFormatDate(), text:md, isGroup: true, id: message.to, from: from });
+                M.Prompt({ time: getNowFormatDate(), text: md, isGroup: true, id: message.to, from: from });
             else
                 C.AddContent({ time: getNowFormatDate(), text: md, isGroup: true, from: from }, message.to);
         }
@@ -689,7 +699,7 @@ var listen = {
         //    Chatbox.addmessage(other);
     },
     onVideoMessage: function (message) {
-       
+
         //var node = document.getElementById('privateVideo');
         //var option = {
         //    url: message.url,
@@ -762,6 +772,12 @@ function Form_move() {
     $("#Chat-header-movefrom").mouseup(function (e) {
         $(".MoveFrom").draggable("disable");
     });
+    $("#Chat-wrap-min").mousedown(function (e) {
+        $(".MoveFrom").draggable("enable");
+    });
+    $("#Chat-wrap-min").mouseup(function (e) {
+        $(".MoveFrom").draggable("disable");
+    });
     $("#Manager-user-img-min").mousedown(function (e) {
         $(".MoveFrom").draggable("enable");
     });
@@ -803,17 +819,30 @@ function min() {
     });
 }
 
-function getmember(data,i) {
-        webapi.getMemberList(data[i], function (members) {
-            data[i]["members"] = members.data;
-            i++;
-            if (i >= data.length) {
-                M.GroupsData(data);
-            }
-            else {
-                getmember(data, i);
-            }
+function chatWindowMin() {
+    $("#Chat-wrap .layui-layer-min").click(function (e) {
+        $("#Chat-wrap").hide(300, function (e) {
+            $("#Chat-wrap-min").show(500);
         });
+    });
+    $("#Chat-wrap-min").dblclick(function (e) {
+        $("#Chat-wrap-min").hide(300, function (e) {
+            $("#Chat-wrap").show(500);
+        });
+    });
+}
+
+function getmember(data, i) {
+    webapi.getMemberList(data[i], function (members) {
+        data[i]["members"] = members.data;
+        i++;
+        if (i >= data.length) {
+            M.GroupsData(data);
+        }
+        else {
+            getmember(data, i);
+        }
+    });
 }
 
 function member_show() {
@@ -826,7 +855,7 @@ function member_show() {
             $("#Chat-group-tools-box").show(300);
             $(this).addClass("activity");
             $("#Chat-group-member-box li").mouseenter(function (e) {
-                $(this).find(".bannedspan").show(); 
+                $(this).find(".bannedspan").show();
                 $(this).find(".shieldingspan").show();
             });
             $("#Chat-group-member-box li").mouseleave(function (e) {
@@ -861,7 +890,7 @@ function creategroup() {
         var opt = {
             groupname: groupname,
             desc: groupjj,
-            members: groupmember.slice(0, groupmember.length-1),
+            members: groupmember.slice(0, groupmember.length - 1),
             public: pub,
             approval: apply,
             allowinvites: allow
@@ -870,7 +899,7 @@ function creategroup() {
             alert("建群成功");
         }, function (ex) {
             alert(ex);
-            });
+        });
     });
     $("#Manager-creategroup-close").click(function (e) {
         $("#Manager-creategroupbox").hide();

@@ -32,7 +32,11 @@
         ChatGroupMember: function (data) { },//api获取成员并保存
         ChatGroupTalk_Click: function (view, id, groupid) { },//禁言点击
         ChatGroupBlack_Click: function (view, id, groupid) { },//黑名单点击
-        ChatListItemPrompt: function (view) { },//消息提示
+        ChatListItemPrompt: function (view) {
+            view.find(".Manager-msg-position").show();
+            var number = parseInt(view.find(".Manager-msg-position").html()) + 1 || 1;
+            view.find(".Manager-msg-position").html(number.toString());
+        }//消息提示
     }
     this.SetCloseAllBtn = function (jquery) {
         $(jquery).click(function (e) {
@@ -175,7 +179,7 @@
         }
         else {
             var view = ChatListItemView.get(id);
-            ChatListItemPrompt(view);
+            _this.Config.ChatListItemPrompt(view);
         }
     }
     this.HasUser = function (id) {
