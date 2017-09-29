@@ -56,6 +56,7 @@ $(document).ready(function () {
         else {
             Me = data;
             M.SetMe(data);
+            $("#Manager-user-bm").text(Me.job);
             $("#Manager-user-img").attr("src", Me.PicName == null ? defaultImage : basepicurl + Me.PicName);
             $("#Manager-user-img-min").attr("src", Me.PicName == null ? defaultImage : basepicurl + Me.PicName);
             $("#Manager-user-name").html(Me.username);
