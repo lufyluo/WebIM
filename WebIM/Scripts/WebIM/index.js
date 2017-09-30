@@ -7,6 +7,8 @@ var maxlogin = 3;
 var nowlogin = 0;
 var Me = {};
 var enterprise = "";
+var dragObject = "";
+
 
 $(document).ready(function () {
     tab_click();
@@ -15,6 +17,7 @@ $(document).ready(function () {
     member_show();
     creategroup();
     min();
+    chatWindowMin();
     Me["userid"] = $("#Manager-wrap").attr("userid");
     enterprise = $("#Manager-user-name").text().split('_')[0] + "_";
     $("#Manager-user-name").text($("#Manager-user-name").text().split('_')[1]);
@@ -124,7 +127,7 @@ $(document).ready(function () {
         if (data.isFriend) {
             var view = '<div class="Manager-contact">' +
                 '<img class="img-circle pull-left" width= "30" height= "30" style= "margin:5px" src= "{0}" >' +
-                '  <div class="pull-left" style="margin-top:5px;">{1}</div>' +
+                '  <div class="pull-left msg-Prompt-only" style="margin-top:5px;">{1}</div>' +
                 ' <div style="max-width:90px;height:20px;overflow: hidden; " class="Manager-sign pull-left">{2}</div>' +
                 ' <div class="Manager-msg-number img-circle" style="margin-top:10px;">{3}</div>' +
                 ' </div >';
@@ -313,6 +316,7 @@ $(document).ready(function () {
                 $("#Chat-header img").attr("src", data.PicName == null ? defaultImage : basepicurl + data.PicName);
                 $("#Chat-header .Chat-user-card-name span").html(data.userid + "(" + data.username + ")");
             }
+            $("#Chat-header .Chat-user-card-name p").html(data.job || "职务");
             $("#Chat-messagebox").html("");
             try {
                 for (var i = 0; i < data.msg.length; i++)
@@ -759,14 +763,19 @@ function tab_click() {
 function Form_move() {
     $("#Manager-friends-selectbox").draggable();
     $("#Manager-creategroupbox").draggable();
-    $(".MoveFrom").draggable();
+    $(".MoveFrom").draggable({ containment: [2, 2, $("body").width(), $("body").width(), $("body").height()]});
     $(".MoveFrom").draggable("disable");
     $("#Manager-userbox").mousedown(function (e) {
         $(".MoveFrom").draggable("enable");
     });
+    $("#Manager-userbox").mouseleave(function () {
+        $(".MoveFrom").draggable("disable");
+    });
+
     $("#Manager-userbox").mouseup(function (e) {
         $(".MoveFrom").draggable("disable");
     });
+
     $("#Chat-header-movefrom").mousedown(function (e) {
         $(".MoveFrom").draggable("enable");
     });
@@ -790,6 +799,19 @@ function Form_move() {
         $(this).css("z-index", 999);
         e.stopPropagation();
     });
+}
+
+function moveFormReposition(view) {
+    var result = 0;
+    if (view.position().left < 0) {
+        view.animate({ left: 3 }, 300);
+        result += 1;
+    }
+    if (view.position().top < 0) {
+        view.animate({ top: 3 }, 300);
+        result += 2;
+    }
+    return reuslt;
 }
 
 function prompt_show() {

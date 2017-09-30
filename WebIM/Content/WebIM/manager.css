@@ -130,12 +130,14 @@ not supported by any browser */
    /* border-bottom: 1px solid #bdbdbd;*/
    cursor: pointer;
 }
-
-
-    .Manager-contact:hover {
-        /*background-color:#dff0f7;*/
-        background-color:#dff0f7;
-    }
+.Manager-msg-prompt-box .msg-Prompt-only {
+    width: 100px;
+    text-align: left;
+}
+.Manager-contact:hover {
+    /*background-color:#dff0f7;*/
+    background-color: #dff0f7;
+}
 
 #Manager-sign, .Manager-sign {
     font-size: 8px;

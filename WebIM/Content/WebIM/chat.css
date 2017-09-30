@@ -4,6 +4,7 @@
     box-shadow: 1px 1px 30px rgba(0,0,0,.3);
     border: 1px solid #D9D9D9;
 }
+
 #Chat-wrap {
     width: 700px;
     height: 520px;
@@ -11,6 +12,7 @@
     background-color: white;
     /*background: url("/Img/WebIM/bg.jpg");*/
 }
+
 #Chat-wrap-min {
     width: 200px;
     height: 37px;
@@ -23,14 +25,16 @@
     cursor: move;
     /*background: url("/Img/WebIM/bg.jpg");*/
 }
-#Chat-wrap-min span {
-    line-height: 37px; 
-}
+
+    #Chat-wrap-min span {
+        line-height: 37px;
+    }
+
 #Chat-friendbox {
     overflow: auto;
     width: 200px;
     height: 100%;
-    background-color:#f2f2f2;
+    background-color: #f2f2f2;
     padding-bottom: 10px;
     border-right: 1px solid #bbb;
 }
@@ -46,7 +50,7 @@
     height: 80px;
     position: relative;
     padding: 15px;
-    background-color:#f2f2f2;
+    background-color: #f2f2f2;
     cursor: move;
 }
 
@@ -58,42 +62,47 @@
     overflow-x: hidden;
     overflow-y: auto;
 }
-#Chat-messagebox span,#Chat-messagebox a,.Chat-messagebox-msg span,.Chat-messagebox-msg a{
-    color:white !important;
-}
-.layui-layer-min{
+
+    #Chat-messagebox span, #Chat-messagebox a, .Chat-messagebox-msg span, .Chat-messagebox-msg a {
+        color: white !important;
+    }
+
+.layui-layer-min {
     display: inline-block;
     position: relative;
     width: 16px;
     height: 16px;
-    margin-left: 232px;
+    margin-left: 180px;
     margin-top: 3px;
     font-size: 12px;
     opacity: .2;
 }
-.layui-layer-min cite{
-    position: absolute;
-    width: 14px;
-    height: 2px;
-    left: 0;
-    top: 50%;
-    margin-top: -1px;
-    background-color: #2E2D3C;
-    cursor: pointer;
-}
-.layui-layer-max{
+
+    .layui-layer-min cite {
+        position: absolute;
+        width: 14px;
+        height: 2px;
+        left: 0;
+        top: 50%;
+        margin-top: -1px;
+        background-color: #2E2D3C;
+        cursor: pointer;
+    }
+
+.layui-layer-max {
     position: relative;
     width: 16px;
     height: 16px;
     margin-left: 5px;
     margin-top: 3px;
     font-size: 12px;
-    background: url(icon.png) no-repeat; 
+    background: url(icon.png) no-repeat;
     background-position: -32px -40px;
     display: inline-block;
     vertical-align: top;
     opacity: .2;
 }
+
 #Chat-toolbox {
     width: 100%;
     height: 30px;
@@ -121,6 +130,7 @@
     padding-right: 5px;
 }
 
+
 .Chat-user-card {
     width: 94%;
     height: 50px;
@@ -133,12 +143,14 @@
     border-radius: 3px;
 }
 
-.Chat-user-card.activity {
-    background-color:white;
-}
-.Chat-user-card:hover{
-    background-color: #E2E2E2;
-}
+    .Chat-user-card.activity {
+        background-color: white;
+    }
+
+    .Chat-user-card:hover {
+        background-color: #E2E2E2;
+    }
+
 .Chat-user-card-name {
     height: 40px;
     line-height: 40px;
@@ -147,14 +159,16 @@
     vertical-align: middle;
     color: #444;
 }
-.Chat-user-card-name span{
-    display: inline-block;
-    width: 100px;
-    text-overflow: ellipsis;
-    height: 40px;
-    white-space: nowrap;
-    overflow: hidden;
-}
+
+    .Chat-user-card-name span {
+        display: inline-block;
+        width: 100px;
+        text-overflow: ellipsis;
+        height: 40px;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
 #Chat-sendmessage-msg {
     width: 100%;
     height: 90px;
@@ -188,48 +202,51 @@
 
 .Chat-mebox .Chat-messagebox-msg {
     float: right;
-    margin-right:5px;
+    margin-right: 5px;
     clear: both;
     max-width: 300px;
     word-wrap: break-word;
     margin-top: 6px;
-    background:#5bc0de !important;
-    color:white;
+    background: #5bc0de !important;
+    color: white;
 }
 
 .Chat-otherbox .Chat-messagebox-msg {
     float: left;
-    margin-left:5px;
+    margin-left: 5px;
     clear: both;
     max-width: 300px;
     word-wrap: break-word;
-    background:#5bc0de !important;
+    background: #5bc0de !important;
     padding: 8px 15px !important;
     word-break: break-all;
     border-radius: 3px !important;
     line-height: 22px;
     vertical-align: top;
     font-size: 14px !important;
-    position:relative;
-    color:white;
+    position: relative;
+    color: white;
 }
-.Chat-otherbox .Chat-messagebox-msg:after {
-    left: auto;
-    right: -10px;
-    border-top-color: #5bc0de;
-}
-.Chat-otherbox .Chat-messagebox-msg:after {
-    content: '';
-    position: absolute;
-    left: -10px;
-    top: 13px;
-    width: 0;
-    height: 0;
-    border-style: solid dashed dashed;
-    border-color: #5bc0de transparent transparent;
-    overflow: hidden;
-    border-width: 10px;
-}
+
+    .Chat-otherbox .Chat-messagebox-msg:after {
+        left: auto;
+        right: -10px;
+        border-top-color: #5bc0de;
+    }
+
+    .Chat-otherbox .Chat-messagebox-msg:after {
+        content: '';
+        position: absolute;
+        left: -10px;
+        top: 13px;
+        width: 0;
+        height: 0;
+        border-style: solid dashed dashed;
+        border-color: #5bc0de transparent transparent;
+        overflow: hidden;
+        border-width: 10px;
+    }
+
 .Chat-face-box {
     position: absolute;
     left: -100px;
@@ -270,14 +287,14 @@ ul {
     background-color: white;
 }
 
-    #Chat-group-member-box li {
-        position:relative;
-        text-align: center;
-        float: left;
-        width: 55px;
-        margin-top: 10px;
-        margin-left: 10px;
-    }
+#Chat-group-member-box li {
+    position: relative;
+    text-align: center;
+    float: left;
+    width: 55px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
 
 
 #Chat-member-btn {
@@ -304,9 +321,9 @@ ul {
     }
 
 .bannedspan {
-    color:white;
+    color: white;
     width: 100%;
-    background-color:rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.5);
     position: absolute;
     top: 3px;
     left: 0px;
@@ -325,7 +342,7 @@ ul {
     display: none;
 }
 
-    .shieldingspan:hover,.bannedspan:hover {
+    .shieldingspan:hover, .bannedspan:hover {
         background-color: rgba(255,0,0,0.8);
     }
 
@@ -333,7 +350,7 @@ ul {
     bottom: 0px;
     position: absolute;
     height: 40px;
-    display:none;
+    display: none;
 }
 
     #Chat-group-tools span {
